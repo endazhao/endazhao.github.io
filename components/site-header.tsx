@@ -12,7 +12,8 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="shell header-inner">
         <Link className="wordmark" href="/" aria-label="Enda Zhao, home">
-          <span className="wordmark-mark" aria-hidden="true">EZ</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="wordmark-icon" src="/favicon.svg" alt="" width="28" height="28" />
           <span>Enda Zhao</span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
