@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { renderMarkdown } from "../lib/markdown.ts";
 
 async function render(path = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -27,4 +28,16 @@ test("renders the publications and notes routes", async () => {
   assert.match(publicationsHtml, /Stepwise Informativeness Search/);
   assert.match(publicationsHtml, /page-hero-copy/);
   assert.match(await notes.text(), /Welcome to my research notes/);
+});
+
+test("renders inline and display mathematics with KaTeX", async () => {
+  const html = await renderMarkdown(String.raw`Inline $p_\theta(x)$.
+
+$$
+\mathcal{L}(\theta) = \mathbb{E}_{x}[-\log p_\theta(x)]
+$$`);
+
+  assert.match(html, /class="katex"/);
+  assert.match(html, /class="katex-display"/);
+  assert.match(html, /<math[^>]*display="block"/);
 });

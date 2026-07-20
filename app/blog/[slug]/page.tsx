@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { marked } from "marked";
+import { renderMarkdown } from "@/lib/markdown";
 import { getAllPosts, getPost } from "@/lib/posts";
 
 export function generateStaticParams() {
@@ -11,7 +11,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();
-  const html = await marked.parse(post.content);
+  const html = await renderMarkdown(post.content);
 
   return (
     <article className="article-shell">

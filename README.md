@@ -25,6 +25,22 @@ tags:
 Write the post here.
 ```
 
+### Mathematics
+
+Blog posts support KaTeX. Use single dollar signs for inline mathematics and
+double dollar signs on their own lines for display mathematics:
+
+```md
+The model defines $p_\theta(x)$ over sequences.
+
+$$
+\mathcal{L}(\theta) = \mathbb{E}_{x}[-\log p_\theta(x)]
+$$
+```
+
+Display delimiters must appear on their own lines. Long display equations scroll
+horizontally on small screens.
+
 ## Local development
 
 Requires Node.js 22.13 or later.
